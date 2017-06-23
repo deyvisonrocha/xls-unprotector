@@ -8,7 +8,7 @@ import com.idealizza.app.Password.Remove;
 /**
  * Removedor de Senhas do XLS (Projeto Financeiro)
  *
- * 
+ *
  */
 public class App 
 {
