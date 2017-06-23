@@ -1,7 +1,14 @@
 package com.idealizza.app;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
+import com.idealizza.app.Password.Identify;
+import com.idealizza.app.Password.Remove;
+import com.sun.javaws.exceptions.InvalidArgumentException;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
@@ -13,18 +20,14 @@ public class App
 {
     public static void main( String[] args ) throws IOException {
         try {
-            String pathFile = "/home/deyvison/code/roo/1890_436C726B_70182571000170_MG_03102016_CONSIGNADO.xls";
+            String path = args[0];
+            Identify identify = new Identify();
 
-            InputStream inp = new FileInputStream(pathFile);
-            org.apache.poi.hssf.record.crypto.Biff8EncryptionKey.setCurrentUserPassword("7018");
-
-            Workbook wb = WorkbookFactory.create(inp);
-
-            // Write the output to a file
-            FileOutputStream fileOut;
-            fileOut = new FileOutputStream("/home/deyvison/code/roo/unprotectedworkbook.xls");
-            wb.write(fileOut);
-            fileOut.close();
+            CollectFiles collectFiles = new CollectFiles(path);
+            for (File file : collectFiles.walkFolders()) {
+                String password = identify.getPassword(file.getAbsoluteFile());
+                Remove remove = new Remove(file.getAbsoluteFile(), password);
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
