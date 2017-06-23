@@ -1,20 +1,14 @@
 package com.idealizza.app;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.*;
 
 import com.idealizza.app.Password.Identify;
 import com.idealizza.app.Password.Remove;
-import com.sun.javaws.exceptions.InvalidArgumentException;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 /**
- * Hello world!
+ * Removedor de Senhas do XLS (Projeto Financeiro)
  *
+ * 
  */
 public class App 
 {
